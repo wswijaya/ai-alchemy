@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
 
 # C extensions
 *.so
@@ -22,6 +23,9 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -32,6 +36,20 @@ var/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+pytestdebug.log
 
 # Unit test / coverage reports
 htmlcov/
@@ -49,6 +67,13 @@ coverage.xml
 
 # Django stuff:
 *.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
 
 # Sphinx documentation
 docs/_build/
