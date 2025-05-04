@@ -41,7 +41,7 @@ def query_gemini(query="Hello..."):
 
 
 async def main():
-    """Main function to load code, process it, analyze it, and query it."""
+    """Main function."""
     # Example queries
     queries = [
         "What is the weather in Singapore today?",

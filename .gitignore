@@ -128,3 +128,6 @@ lancedb/
 
 # Exclude temporary files
 temp/
+
+# Exclude data folder
+data/

@@ -41,7 +41,7 @@ def query_openai(query="Hello..."):
         return None
     
 async def main():
-    """Main function to load code, process it, analyze it, and query it."""
+    """Main function."""
     # Example queries
     queries = [
         "What is the weather in Singapore today?",
