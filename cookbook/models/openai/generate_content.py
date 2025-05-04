@@ -2,19 +2,15 @@ import os
 import asyncio
 from dotenv import load_dotenv
 
-from openai import AsyncAzureOpenAI
+from openai import OpenAI
 
 load_dotenv(dotenv_path="../../../.env")
 
-az_client = AsyncAzureOpenAI(
-    azure_endpoint=os.getenv('AZ_OPENAI_API_ENDPOINT'),
-    api_version=os.getenv('AZ_OPENAI_API_VERSION'),
-    api_key=os.getenv('AZ_OPENAI_API_KEY'),
-)
+client = OpenAI()
 
-async def query_az_openai(query="Hello..."):
+def query_openai(query="Hello..."):
     """
-    Queries using Azure AI Service (OpenAI)
+    Queries using OpenAI
     Args:
         query (str): The natural language question about the code.
 
@@ -33,14 +29,13 @@ async def query_az_openai(query="Hello..."):
             },
         ]
 
-        response = await az_client.chat.completions.create(
-            model=os.getenv('AZ_MODEL_DEPLOYMENT_NAME'),  # Replace with your Azure deployment name for chat models
+        response = client.chat.completions.create(
+            model=os.getenv('OPENAI_MODEL'),  # Replace with your Azure deployment name for chat models
             messages=messages,
-            max_tokens=4096,  # Adjust as needed
             temperature=0.5,  # Adjust for desired randomness
         )
 
-        return response.choices[0].message.content
+        return response.output_text
     except Exception as e:
         print(f"Error querying the code with Azure OpenAI: {e}")
         return None
@@ -54,7 +49,7 @@ async def main():
         "List 5 eating places near Orchard",
     ]
     for query in queries:
-        answer = await query_az_openai(query)
+        answer = query_openai(query)
         if answer:
             print(f"\nQuery: {query}")
             print(f"LLM Answer: {answer}")
